@@ -1,0 +1,2 @@
+* Notes
+Choosing to use date-fns instead of moment.js for it's smaller size.
