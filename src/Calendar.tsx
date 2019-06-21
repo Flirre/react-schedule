@@ -3,7 +3,6 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Day from "./Day";
 import { withStyles, WithStyles, Theme } from "@material-ui/core/styles";
-import { addDays, isEqual } from "date-fns";
 
 const styles: any = (theme: Theme) => ({
   root: { flexGrow: 1, height: "100vh" },

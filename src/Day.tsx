@@ -1,7 +1,6 @@
 import React from "react";
-import { differenceInSeconds, format, addDays, getHours } from "date-fns";
+import { format, getHours, isSameDay } from "date-fns";
 import Grid, { GridSize } from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import Typography from "@material-ui/core/Typography";
 import Hour from "./Hour";
