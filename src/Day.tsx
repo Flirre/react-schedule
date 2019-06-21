@@ -16,7 +16,12 @@ const styles: any = (theme: Theme) => ({
 interface dayProps extends WithStyles<typeof styles> {
   xs: GridSize;
   date: Date;
-  events: Array<{ startDate: string; endDate: string }>;
+  events: Array<{
+    startDate: string;
+    endDate: string;
+    activity: string;
+    location: string;
+  }>;
 }
 
 interface dayState {
@@ -56,17 +61,38 @@ class Day extends React.Component<dayProps, dayState> {
   ];
   componentDidMount() {}
 
-  findEvents = (events: Array<{ startDate: string; endDate: string }>) => {
-    let match: Array<{ start: number; end: number }> = [];
+  findEvents = (
+    events: Array<{
+      startDate: string;
+      endDate: string;
+      activity: string;
+      location: string;
+    }>
+  ) => {
+    let match: Array<{
+      startHour: number;
+      endHour: number;
+      duration: number;
+      activity: string;
+      location: string;
+    }> = [];
     if (events.length > 0) {
-      events.map(event => {
-        match.push({
-          start: getHours(new Date(event.startDate)),
-          end: getHours(new Date(event.endDate))
-        });
+      events.forEach(event => {
+        if (isSameDay(new Date(event.startDate), this.props.date)) {
+          const startHour = getHours(new Date(event.startDate));
+          const endHour = getHours(new Date(event.endDate));
+          const duration =
+            endHour >= startHour ? endHour - startHour : 24 - startHour;
+          match.push({
+            startHour,
+            endHour,
+            duration,
+            activity: event.activity,
+            location: event.location
+          });
+        }
       });
     }
-    console.log(match);
     return match;
   };
 
@@ -76,19 +102,42 @@ class Day extends React.Component<dayProps, dayState> {
     return (
       <Grid item xs={this.props.xs} className={classes.item}>
         <Typography variant="h6">
-          {format(this.props.date, "EEEE - d/M")}
+          {format(this.props.date, "EEE - d/M")}
         </Typography>
         <Divider />
         <Grid container item xs={12} direction="row" className={classes.day}>
-          {this.hours.map(hour => {
+          {this.hours.map((hour, index) => {
+            let height = 1;
+            let eventData = undefined;
             if (
               events.some(event => {
-                console.log("match?", hour, event.start);
-                return event.start === hour;
+                height = event.duration;
+                eventData = event;
+                return event.startHour === hour;
               })
             ) {
-              return <Hour key={`h-${hour}`} hour={hour} hidden={false} />;
-            } else return <Hour key={`h-${hour}`} hour={hour} hidden={true} />;
+              this.hours.splice(index + 1, 1);
+
+              console.log(eventData);
+              return (
+                <Hour
+                  key={`h-${hour}`}
+                  hour={hour}
+                  hidden={false}
+                  height={height}
+                  event={eventData}
+                />
+              );
+            } else
+              return (
+                <Hour
+                  key={`h-${hour}`}
+                  hour={hour}
+                  hidden={true}
+                  height={1}
+                  event={eventData}
+                />
+              );
           })}
         </Grid>
       </Grid>
