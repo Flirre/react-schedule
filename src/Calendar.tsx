@@ -7,11 +7,9 @@ import { withStyles, WithStyles, Theme } from "@material-ui/core/styles";
 const styles: any = (theme: Theme) => ({
   root: { flexGrow: 1, height: "100vh" },
   paper: {
-    height: "90vh",
+    height: "95vh",
     width: "90vw",
-    textAlign: "center",
-    padding: "4px 8px 0 8px",
-    marginTop: "8px"
+    textAlign: "center"
   },
   calendar: {
     height: "100%",
@@ -52,7 +50,12 @@ class Calendar extends React.Component<calendarProps, calendarState> {
   public render() {
     const { classes } = this.props;
     return (
-      <Grid container justify="center" className={classes.root}>
+      <Grid
+        container
+        justify="center"
+        alignItems="center"
+        className={classes.root}
+      >
         <Paper className={classes.paper}>
           <Grid
             container
