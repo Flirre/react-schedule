@@ -116,9 +116,9 @@ class Day extends React.Component<dayProps, dayState> {
                 return event.startHour === hour;
               })
             ) {
-              this.hours.splice(index + 1, 1);
-
-              console.log(eventData);
+              // remove the 'hours' that overlap with an Event
+              this.hours.splice(hour, height - 1);
+              for (let i = 0; i <= height; i++) {}
               return (
                 <Hour
                   key={`h-${hour}`}
