@@ -6,9 +6,9 @@ import { EventEntity } from "./eventInterface";
 
 const styles: any = (theme: Theme) => ({
   hour: {
-    height: (props: hourProps) => `calc(100% / (24/${props.height}))`,
+    height: (props: hourProps) => `calc((100% / (24/${props.height})))`,
     backgroundColor: "#456",
-    borderRadius: "2px",
+    border: "1px inset #456",
     color: "#ddd"
   },
   hidden: {
