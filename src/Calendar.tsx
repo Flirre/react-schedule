@@ -38,7 +38,7 @@ class Calendar extends React.Component<calendarProps, calendarState> {
   }
   componentDidMount() {
     this.setState({ startTime: new Date() });
-    fetch("http://www.mocky.io/v2/5c9cdca03300004d003f2151")
+    fetch("https://www.mocky.io/v2/5c9cdca03300004d003f2151")
       .then(response => {
         return response.json();
       })
