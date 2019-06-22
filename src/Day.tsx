@@ -10,7 +10,7 @@ const styles: any = (theme: Theme) => ({
   item: {
     borderRight: "0.1em solid #ccc"
   },
-  day: { height: "calc(100% - 33px)" }
+  day: { height: "calc(95vh - 33px)" }
 });
 
 interface dayProps extends WithStyles<typeof styles> {

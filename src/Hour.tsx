@@ -5,10 +5,10 @@ import { withStyles, WithStyles, Theme } from "@material-ui/core/styles";
 
 const styles: any = (theme: Theme) => ({
   hour: {
-    height: (props:hourProps)=> `calc(100% / (24/${props.height}))`,
+    height: (props: hourProps) => `calc(100% / (24/${props.height}))`,
     backgroundColor: "#456",
-    borderRadius: '2px',
-    color: '#ddd'
+    borderRadius: "2px",
+    color: "#ddd"
   },
   hidden: {
     visibility: "hidden"
