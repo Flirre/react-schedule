@@ -59,35 +59,40 @@ class Day extends React.Component<dayProps, dayState> {
 
   findEvents = (events: Array<EventData>) => {
     let match: Array<EventEntity> = [];
-    if (events.length > 0) {
-      events.forEach(event => {
-        if (isSameDay(new Date(event.startDate), this.props.date)) {
-          const startHour = getHours(new Date(event.startDate));
-          const endHour = getHours(new Date(event.endDate));
-          const duration =
-            endHour >= startHour ? endHour - startHour : 24 - startHour;
-          match.push({
-            id: event.id,
-            startHour,
-            endHour,
-            duration,
-            activity: event.activity,
-            location: event.location
-          });
-        } else if (isSameDay(new Date(event.endDate), this.props.date)) {
-          const startHour = 0;
-          const endHour = getHours(new Date(event.endDate));
-          const duration = endHour;
-          match.push({
-            id: event.id,
-            startHour,
-            endHour,
-            duration,
-            activity: event.activity,
-            location: event.location
-          });
-        }
-      });
+    if (events) {
+      if (events.length > 0) {
+        events.forEach(event => {
+          if (isSameDay(new Date(event.startDate), this.props.date)) {
+            const startHour = getHours(new Date(event.startDate));
+            const endHour =
+              getHours(new Date(event.endDate)) < startHour
+                ? 0
+                : getHours(new Date(event.endDate));
+            const duration =
+              endHour >= startHour ? endHour - startHour : 24 - startHour;
+            match.push({
+              id: event.id,
+              startHour,
+              endHour,
+              duration,
+              activity: event.activity,
+              location: event.location
+            });
+          } else if (isSameDay(new Date(event.endDate), this.props.date)) {
+            const startHour = 0;
+            const endHour = getHours(new Date(event.endDate));
+            const duration = endHour;
+            match.push({
+              id: event.id,
+              startHour,
+              endHour,
+              duration,
+              activity: event.activity,
+              location: event.location
+            });
+          }
+        });
+      }
     }
     return match;
   };
@@ -131,7 +136,7 @@ class Day extends React.Component<dayProps, dayState> {
                   hour={hour}
                   hidden={true}
                   height={1}
-                  event={eventEntity}
+                  event={undefined}
                 />
               );
           })}
