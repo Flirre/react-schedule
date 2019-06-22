@@ -13,6 +13,11 @@ const styles: any = (theme: Theme) => ({
   },
   hidden: {
     visibility: "hidden"
+  },
+  timeText: {
+    [theme.breakpoints.only("xs")]: {
+      display: "none"
+    }
   }
 });
 

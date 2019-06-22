@@ -2,6 +2,7 @@ import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Day from "./Day";
+import Time from "./Time";
 import { withStyles, WithStyles, Theme } from "@material-ui/core/styles";
 
 const styles: any = (theme: Theme) => ({
@@ -56,6 +57,7 @@ class Calendar extends React.Component<calendarProps, calendarState> {
         alignItems="center"
         className={classes.root}
       >
+        <Time />
         <Paper className={classes.paper}>
           <Grid
             container
