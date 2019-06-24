@@ -1,45 +1,57 @@
-import Grid from "@material-ui/core/Grid";
-import React from "react";
-import { Theme } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import { withStyles } from "@material-ui/styles";
+import Grid from '@material-ui/core/Grid';
+import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import { withStyles, Theme } from '@material-ui/core/styles';
 
 const styles: any = (theme: Theme) => ({
   gridRoot: {
-    height: "95vh",
-    marginTop: "-18px"
+    height: '95vh',
+    width: '64px',
+    [theme.breakpoints.only('xs')]: {
+      width: '32px'
+    }
   },
   hour: {
-    /* height: "calc((100% - 33px) / 24)", */
-    color: "#aaa"
+    height: 'calc(100% / 24)',
+    color: '#aaa',
+    marginRight: '8px'
+  },
+  timeText: {
+    fontSize: '0.70rem',
+    [theme.breakpoints.only('xs')]: {
+      fontSize: '0.5rem'
+    }
+  },
+  dayHeight: {
+    height: 'calc(95vh - 24px)'
   }
 });
 function Time(props: any) {
   let hours = [
-    0,
-    1,
-    2,
-    3,
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15,
-    16,
-    17,
-    18,
-    19,
-    20,
-    21,
-    22,
-    23
+    '00:00',
+    '01:00',
+    '02:00',
+    '03:00',
+    '04:00',
+    '05:00',
+    '06:00',
+    '07:00',
+    '08:00',
+    '09:00',
+    '10:00',
+    '11:00',
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+    '18:00',
+    '19:00',
+    '20:00',
+    '21:00',
+    '22:00',
+    '23:00'
   ];
 
   const { classes } = props;
@@ -47,21 +59,33 @@ function Time(props: any) {
     <Grid
       container
       item
-      xs={1}
-      sm={1}
       direction="column"
-      justify="space-evenly"
       alignItems="flex-end"
+      justify="flex-end"
       className={classes.gridRoot}
     >
-      <Typography variant="h6"> </Typography>
-      {hours.map(hour => {
-        return (
-          <Typography variant="subtitle2" className={classes.hour}>
-            {hour}
-          </Typography>
-        );
-      })}
+      <Grid
+        container
+        item
+        direction="column"
+        justify="flex-end"
+        alignItems="flex-end"
+        className={classes.dayHeight}
+      >
+        {hours.map(hour => {
+          return (
+            <div className={classes.hour}>
+              <Typography
+                variant="subtitle2"
+                key={`time-hour-${hour}`}
+                className={classes.timeText}
+              >
+                {hour}
+              </Typography>
+            </div>
+          );
+        })}
+      </Grid>
     </Grid>
   );
 }

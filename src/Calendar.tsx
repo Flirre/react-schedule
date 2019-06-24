@@ -1,21 +1,22 @@
-import React from "react";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
-import Day from "./Day";
-import Time from "./Time";
-import { withStyles, WithStyles, Theme } from "@material-ui/core/styles";
+import React from 'react';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Day from './Day';
+import Time from './Time';
+import { withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 
 const styles: any = (theme: Theme) => ({
-  root: { flexGrow: 1, height: "100vh" },
+  root: { flexGrow: 1, height: '100vh' },
   paper: {
-    height: "95vh",
-    width: "90vw",
-    textAlign: "center"
+    height: '95vh',
+    width: '90vw',
+    textAlign: 'center',
+    overflow: 'hidden'
   },
   calendar: {
-    height: "100%",
-    "& div:last-child": {
-      borderRight: "0px"
+    height: '100%',
+    '& div:last-child': {
+      borderRight: '0px'
     }
   }
 });
@@ -39,7 +40,7 @@ class Calendar extends React.Component<calendarProps, calendarState> {
   }
   componentDidMount() {
     this.setState({ startTime: new Date() });
-    fetch("https://www.mocky.io/v2/5c9cdca03300004d003f2151")
+    fetch('https://www.mocky.io/v2/5c9cdca03300004d003f2151')
       .then(response => {
         return response.json();
       })
@@ -68,17 +69,17 @@ class Calendar extends React.Component<calendarProps, calendarState> {
           >
             <Day
               xs={4}
-              date={new Date("2019-02-26")}
+              date={new Date('2019-02-26')}
               events={this.state.events}
             />
             <Day
               xs={4}
-              date={new Date("2019-02-27")}
+              date={new Date('2019-02-27')}
               events={this.state.events}
             />
             <Day
               xs={4}
-              date={new Date("2019-02-28")}
+              date={new Date('2019-02-28')}
               events={this.state.events}
             />
           </Grid>

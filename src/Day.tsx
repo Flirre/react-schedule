@@ -1,17 +1,17 @@
-import React from "react";
-import { format, getHours, isSameDay } from "date-fns";
-import Grid, { GridSize } from "@material-ui/core/Grid";
-import Divider from "@material-ui/core/Divider";
-import Typography from "@material-ui/core/Typography";
-import Hour from "./Hour";
-import { EventData, EventEntity } from "./eventInterface";
-import { withStyles, WithStyles, Theme } from "@material-ui/core/styles";
+import React from 'react';
+import { format, getHours, isSameDay } from 'date-fns';
+import Grid, { GridSize } from '@material-ui/core/Grid';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import Hour from './Hour';
+import { EventData, EventEntity } from './eventInterface';
+import { withStyles, WithStyles, Theme } from '@material-ui/core/styles';
 
 const styles: any = (theme: Theme) => ({
   item: {
-    borderRight: "0.1em solid #ccc"
+    borderRight: '0.1em solid #ccc'
   },
-  day: { height: "calc(95vh - 33px)" }
+  day: { height: 'calc(95vh - 33px)' }
 });
 
 interface dayProps extends WithStyles<typeof styles> {
@@ -103,7 +103,7 @@ class Day extends React.Component<dayProps, dayState> {
     return (
       <Grid item xs={this.props.xs} className={classes.item}>
         <Typography variant="h6">
-          {format(this.props.date, "EEE - d/M")}
+          {format(this.props.date, 'EEE - d/M')}
         </Typography>
         <Divider />
         <Grid container item xs={12} direction="row" className={classes.day}>
